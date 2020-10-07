@@ -5,7 +5,16 @@
 
 import UIKit
 
+/// An extention to UIColor to create a UIColor from an hex string
+/// Two types of strings are supported:
+/// - 8 char string with RGB and alpha
+/// - 6 char string with RGB only
+/// The string can be prefixed with #
 extension UIColor {
+    /// Create a UIColor from a hex string
+    /// The string can have # as a prefix and can be
+    /// 6 or 8 chars long (8 chars for the alpha parameter)
+    /// - Parameter hexString: The string containing the hex representation of the color
     public convenience init?(hexString: String) {
         let r, g, b, a: CGFloat
 
