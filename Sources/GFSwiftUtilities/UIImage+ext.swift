@@ -34,4 +34,22 @@ extension UIImage {
             return UIImage(cgImage: scaledImage)
         }
     }
+    
+    /// Returns a resized image with the height or weight having the specified size
+    /// The aspect ratio is preserved in case of error an empty image is returned
+    /// - Parameter maxSize: The maximum size of the width or height
+    /// - Returns: The resized UIImage
+    func resize(maxSize:Float) -> UIImage {
+        var newSize = CGSize.zero
+        let ratio = self.size.width / self.size.height
+        if (self.size.width > self.size.height) {
+            newSize.width = CGFloat(maxSize)
+            newSize.height = CGFloat(maxSize) / ratio
+        }
+        else {
+            newSize.height = CGFloat(maxSize)
+            newSize.width = CGFloat(maxSize) * ratio
+        }
+        return resize(size: newSize)
+    }
 }
