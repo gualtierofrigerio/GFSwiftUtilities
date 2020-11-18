@@ -8,6 +8,16 @@ import Foundation
 
 /// Utility functions for JSON conversion and interaction with the file system
 public class JSONUtils {
+    /// Builds a Data object from a JSON object like a dictionary or an array
+    /// - Parameter fromObject: the object to encode as string
+    /// - Returns: an optional Data if it was possible to encode the object as a JSON
+    public class func getData(fromObject jsonObject:Any) -> Data? {
+        var data:Data? = nil
+        if JSONSerialization.isValidJSONObject(jsonObject) {
+            data = try? JSONSerialization.data(withJSONObject: jsonObject, options: .fragmentsAllowed)
+        }
+        return data
+    }
     
     /// Returns a JSON object from a file
     /// The function removes enconding characters from the string if present
@@ -36,7 +46,7 @@ public class JSONUtils {
     /// - Parameter fromObject: the object to encode as string
     /// - Returns: an optional string if it was possible to encode the object as a JSON string
     public class func getString(fromObject jsonObject:Any) -> String? {
-        if let data = try? JSONSerialization.data(withJSONObject: jsonObject, options: .fragmentsAllowed),
+        if let data = JSONUtils.getData(fromObject: jsonObject),
            let string = String(data: data, encoding: .utf8) {
             return string
         }
