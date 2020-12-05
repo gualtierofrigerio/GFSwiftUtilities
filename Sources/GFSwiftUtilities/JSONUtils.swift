@@ -61,4 +61,23 @@ public class JSONUtils {
         let fileString = try? String(contentsOf: url)
         return fileString
     }
+    
+    /// Write a JSON object to file
+    /// - Parameters:
+    ///   - object: JSON object to write
+    ///   - path: path of the file to be written
+    /// - Throws:
+    public class func writeJSON(object:Any, toPath path:String) throws {
+        guard let data = getData(fromObject: object) else {return}
+        let url = URL(fileURLWithPath: path)
+        try data.write(to: url)
+    }
+    
+    /// Write a string on a file at a given path
+    /// - Parameter path: The path of the file to be written
+    /// - Throws:
+    public class func writeString(string:String, toPath path:String) throws {
+        let url = URL(fileURLWithPath: path)
+        try string.write(to: url, atomically: true, encoding: .utf8)
+    }
 }
