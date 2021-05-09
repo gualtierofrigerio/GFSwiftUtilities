@@ -8,3 +8,4 @@ Package containing utilities in Swift
 * UIView+exit for saving a UIView as a UIImage
 * UIViewController+ext for adding and removing child view controllers
 * NetworkStatusHelper wrapper for NWPathMonitor to check connectivity status see [this article](http://www.gfrigerio.com/check-connectivity-status/)
+* XMLHelper to parse XML 
